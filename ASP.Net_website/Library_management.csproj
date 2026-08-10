@@ -68,12 +68,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AddBook.aspx" />
+    <Content Include="AdminIssueBook.aspx" />
+    <Content Include="AdminLogin.ascx" />
     <Content Include="AdminDashboard.aspx" />
+    <Content Include="AdminReturnBook.aspx" />
     <Content Include="Availability.aspx" />
     <Content Include="BookSearch.aspx" />
     <Content Include="Categories.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="css\AdminDashboard.css" />
+    <Content Include="css\admin-operations.css" />
+    <Content Include="css\book-search.css" />
     <Content Include="css\responsive.css" />
     <Content Include="css\style.css" />
     <Content Include="Home.aspx" />
@@ -90,6 +97,13 @@
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AddBook.aspx.cs">
+      <DependentUpon>AddBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddBook.aspx.designer.cs">
+      <DependentUpon>AddBook.aspx</DependentUpon>
+    </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
@@ -99,6 +113,27 @@
     </Compile>
     <Compile Include="AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminIssueBook.aspx.cs">
+      <DependentUpon>AdminIssueBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminIssueBook.aspx.designer.cs">
+      <DependentUpon>AdminIssueBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLogin.ascx.cs">
+      <DependentUpon>AdminLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.ascx.designer.cs">
+      <DependentUpon>AdminLogin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminReturnBook.aspx.cs">
+      <DependentUpon>AdminReturnBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminReturnBook.aspx.designer.cs">
+      <DependentUpon>AdminReturnBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="Availability.aspx.cs">
       <DependentUpon>Availability.aspx</DependentUpon>

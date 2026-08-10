@@ -24,7 +24,6 @@
                       <p class="small text-primary">Category: Programming</p>
                       <p class="small">Availability: Available</p>
                       <p class="small text-warning">Rating: 4.8</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -37,7 +36,6 @@
                       <p class="small text-primary">Category: Programming</p>
                       <p class="small">Availability: Issued</p>
                       <p class="small text-warning">Rating: 4.5</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -57,7 +55,6 @@
                       <p class="small text-primary">Category: Science</p>
                       <p class="small">Availability: Issued</p>
                       <p class="small text-warning">Rating: 4.5</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -70,7 +67,6 @@
                       <p class="small text-primary">Category: Science</p>
                       <p class="small">Availability: Available</p>
                       <p class="small text-warning">Rating: 4.6</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -90,7 +86,6 @@
                       <p class="small text-primary">Category: Technology</p>
                       <p class="small">Availability: Available</p>
                       <p class="small text-warning">Rating: 4.7</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -103,7 +98,6 @@
                       <p class="small text-primary">Category: Technology</p>
                       <p class="small">Availability: Reserved</p>
                       <p class="small text-warning">Rating: 4.8</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -123,7 +117,6 @@
                       <p class="small text-primary">Category: Medical</p>
                       <p class="small">Availability: Available</p>
                       <p class="small text-warning">Rating: 4.9</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>
@@ -136,7 +129,6 @@
                       <p class="small text-primary">Category: Medical</p>
                       <p class="small">Availability: Issued</p>
                       <p class="small text-warning">Rating: 4.4</p>
-                      <a href="IssueBook.aspx" class="btn btn-primary btn-sm">Borrow</a>
                     </div>
                   </div>
                 </div>

@@ -11,10 +11,6 @@ namespace ASP.Net_website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    lblReturnStatus.Text = "";
-            //}
             if (Request.QueryString["return"] == "success")
             {
                 lblReturnStatus.Text = "<b>Status:</b> Book Returned Successfully!<br />" +

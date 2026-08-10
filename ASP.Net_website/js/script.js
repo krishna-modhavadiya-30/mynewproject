@@ -47,26 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   isAuthSafe = !!localAuthSafe || authParamSafe === '1';
 
-  // If on the admin page and not authenticated, send to login (single replace).
-  if (currentPage === 'admin-dashboard.html' && !isAuthSafe) {
-    const target = 'login.html?redirect=admin-dashboard.html';
-    if (!window.location.href.includes('login.html')) {
-      window.location.replace(target);
-    }
-  }
-
-  // If on the login page and already authenticated (via localStorage or auth param),
-  // forward to the requested page but avoid redirecting to the same URL.
-  if (currentPage === 'login.html' && isAuthSafe) {
-    const redirectTarget = (urlParamsSafe && urlParamsSafe.get('redirect')) || 'admin-dashboard.html';
-    const separator = redirectTarget.includes('?') ? '&' : '?';
-    const finalTarget = redirectTarget + (authParamSafe === '1' ? separator + 'auth=1' : '');
-    // avoid redirect loops: only redirect if finalTarget is not the current URL
-    if (!window.location.href.endsWith(redirectTarget) && !window.location.href.endsWith(finalTarget)) {
-      window.location.replace(finalTarget);
-    }
-  }
-
   // Toggle elements marked as admin-only based on authentication state.
   (function toggleAdminOnly() {
     const adminEls = document.querySelectorAll('[data-admin-only]');
@@ -78,34 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   })();
-
-  const loginForm = document.getElementById('loginForm');
-  if (loginForm) {
-    loginForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = document.getElementById('adminEmail').value.trim();
-      const password = document.getElementById('adminPassword').value.trim();
-      const loginMessage = document.getElementById('loginMessage');
-
-      if (email === 'admin@library.com' && password === 'Admin@123') {
-        // Save auth in localStorage when available
-        try {
-          localStorage.setItem('libraryAdminAuth', 'true');
-          localStorage.setItem('libraryAdminUser', 'Administrator');
-        } catch (e) {
-          // ignore - localStorage may be unavailable for file:// or strict privacy settings
-        }
-
-        // Redirect; include auth=1 as a fallback for file:// testing
-        const redirect = new URLSearchParams(window.location.search).get('redirect') || 'admin-dashboard.html';
-        const separator = redirect.includes('?') ? '&' : '?';
-        window.location.replace(redirect + separator + 'auth=1');
-      } else {
-        loginMessage.classList.remove('d-none');
-        loginMessage.textContent = 'Invalid email or password. Please use admin@library.com / Admin@123.';
-      }
-    });
-  }
 
   // User login handling (separate from admin login)
   const userLoginForm = document.getElementById('userLoginForm');
@@ -172,76 +124,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // ignore
       }
       // ensure we drop any query auth param too
-      window.location.replace('login.html');
+      window.location.replace('Login.aspx');
     });
   });
 
-  // ADMIN modal creation and handlers (brand click or Admin Login button)
-  function ensureAdminModal() {
-    if (document.getElementById('adminLoginModal')) return document.getElementById('adminLoginModal');
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = `
-      <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Administrator Login</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="adminModalForm">
-                <div class="mb-3">
-                  <label class="form-label">Email</label>
-                  <input type="email" class="form-control" id="adminModalEmail" required />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Password</label>
-                  <input type="password" class="form-control" id="adminModalPassword" required />
-                </div>
-                <div class="alert alert-danger d-none" id="adminModalMessage"></div>
-                <div class="d-grid">
-                  <button class="btn btn-primary" type="submit">Sign in</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>`;
-    document.body.appendChild(wrapper);
-    return document.getElementById('adminLoginModal');
-  }
-
-  function bindAdminForm(modalEl) {
-    const form = modalEl.querySelector('#adminModalForm');
-    if (!form || form.dataset.bound) return;
-    form.dataset.bound = '1';
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = modalEl.querySelector('#adminModalEmail').value.trim();
-      const password = modalEl.querySelector('#adminModalPassword').value.trim();
-      const msg = modalEl.querySelector('#adminModalMessage');
-      if (email === 'admin@library.com' && password === 'Admin@123') {
-        try {
-          localStorage.setItem('libraryAdminAuth', 'true');
-          localStorage.setItem('libraryAdminUser', 'Administrator');
-        } catch (e) {}
-        const bsModal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
-        bsModal.hide();
-        window.location.replace('admin-dashboard.html');
-      } else {
-        if (msg) {
-          msg.classList.remove('d-none');
-          msg.textContent = 'Invalid admin credentials.';
-        }
-      }
-    });
-  }
-
   function showAdminModal() {
-    const modalEl = ensureAdminModal();
-    bindAdminForm(modalEl);
-    const modal = new bootstrap.Modal(modalEl);
-    modal.show();
+    const modalEl = document.querySelector('[id$="_adminLoginModal"], #adminLoginModal');
+    if (modalEl && window.bootstrap) new bootstrap.Modal(modalEl).show();
   }
 
   // Trigger admin modal from dropdown button

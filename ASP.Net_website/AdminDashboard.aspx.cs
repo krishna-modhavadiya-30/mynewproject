@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System;
+using System.Data;
 
 namespace ASP.Net_website
 {
@@ -11,7 +7,18 @@ namespace ASP.Net_website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["AdminLoggedIn"] == null || !(bool)Session["AdminLoggedIn"])
+            {
+                Response.Redirect("Home.aspx");
+                return;
+            }
 
+            if (!IsPostBack)
+            {
+                DataTable records = Application["IssuedBooks"] as DataTable;
+                gvIssuedBooks.DataSource = records;
+                gvIssuedBooks.DataBind();
+            }
         }
     }
 }

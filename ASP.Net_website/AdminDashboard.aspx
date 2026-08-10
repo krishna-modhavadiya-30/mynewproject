@@ -1,29 +1,58 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="ASP.Net_website.AdminDashboard" %>
+<%@ Page Title="Admin Dashboard" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="ASP.Net_website.AdminDashboard" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <main class="py-5">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="page-card p-4 p-md-5">
-              <h2 class="fw-bold mb-3">Administrator Login</h2>
-              <p class="text-muted">Sign in to access the admin dashboard securely.</p>
-              <form id="loginForm">
-                <div class="mb-3">
-                  <label class="form-label">Email</label>
-                  <input type="email" class="form-control" id="adminEmail" placeholder="Enter admin email" required />
+        <section class="page-header">
+                <div class="container text-center">
+                        <p class="text-primary fw-semibold mb-2">Library Administration</p>
+                        <h1 class="fw-bold mb-3">Admin Dashboard</h1>
+                        <p class="text-muted mb-0">Manage books and circulation records.</p>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Password</label>
-                  <input type="password" class="form-control" id="adminPassword" placeholder="Enter password" required />
-                </div>
-                <div class="alert alert-danger d-none" id="loginMessage"></div>
-                <button class="btn btn-primary w-100">Login</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+        </section>
 
+        <main class="py-5">
+                <div class="container">
+                        <div class="row g-4 justify-content-center">
+                                <div class="col-md-4">
+                                        <div class="page-card p-4 h-100 text-center position-relative">
+                                                <h3 class="fw-bold mb-3">Search Book</h3>
+                                                <p class="text-muted">Search the library collection before issuing or returning a book.</p>
+                                                <a href="BookSearch.aspx" class="btn btn-primary stretched-link">Search Book</a>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                        <div class="page-card p-4 h-100 text-center position-relative">
+                                                <h3 class="fw-bold mb-3">Issue Book</h3>
+                                                <p class="text-muted">Open the original book issue form.</p>
+                                                <a href="<%= ResolveUrl("~/AdminIssueBook.aspx") %>" class="btn btn-primary stretched-link">Issue Book</a>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                        <div class="page-card p-4 h-100 text-center position-relative">
+                                                <h3 class="fw-bold mb-3">Return Book</h3>
+                                                <p class="text-muted">Open the original book return form.</p>
+                                                <a href="<%= ResolveUrl("~/AdminReturnBook.aspx") %>" class="btn btn-primary stretched-link">Return Book</a>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                        <div class="page-card p-4 h-100 text-center">
+                                                <h3 class="fw-bold mb-3">Add Book</h3>
+                                                <p class="text-muted">Add a new book to the library collection.</p>
+                                                <a href="AddBook.aspx" class="btn btn-primary">Add Book</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="page-card p-4 mt-5">
+                                <h2 class="fw-bold mb-3">Issued Book Records</h2>
+                                <p class="text-muted">Books issued by students appear here for admin review.</p>
+                                <asp:GridView ID="gvIssuedBooks" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" EmptyDataText="No books have been issued yet.">
+                                        <Columns>
+                                                <asp:BoundField DataField="StudentName" HeaderText="Student" />
+                                                <asp:BoundField DataField="BookName" HeaderText="Book" />
+                                                <asp:BoundField DataField="IssueDate" HeaderText="Issue Date" />
+                                                <asp:BoundField DataField="ReturnDate" HeaderText="Return Date" />
+                                                <asp:BoundField DataField="Status" HeaderText="Status" />
+                                        </Columns>
+                                </asp:GridView>
+                        </div>
+                </div>
+        </main>
 </asp:Content>
-
