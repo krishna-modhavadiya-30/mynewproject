@@ -73,6 +73,10 @@
     <Content Include="AdminLogin.ascx" />
     <Content Include="AdminDashboard.aspx" />
     <Content Include="AdminReturnBook.aspx" />
+    <Content Include="App_Data\mydatabase.mdf" />
+    <Content Include="App_Data\mydatabase_log.ldf">
+      <DependentUpon>mydatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Availability.aspx" />
     <Content Include="BookSearch.aspx" />
     <Content Include="Categories.aspx" />
@@ -236,6 +240,7 @@
     <Folder Include="images\categories\" />
     <Folder Include="images\icons\" />
     <Folder Include="images\library\" />
+    <Folder Include="Image\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
