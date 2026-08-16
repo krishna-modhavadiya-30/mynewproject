@@ -1,22 +1,130 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Librarian_active_student.aspx.cs" Inherits="ASP.Net_website.Librarian_active_student" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <!-- Bootstrap 5 CSS (આના લીધે ડિઝાઈન સેટ થતી ન હતી) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    
+
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet" />
-    
+    <!-- 🔻 GridView ને સુંદર બનાવવા માટેનું Custom CSS 🔻 -->
+    <style>
+        /*.custom-grid {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            background-color: #ffffff;
+        }
+
+            .custom-grid th {
+                background-color: #f8f9fa !important;
+                color: #495057 !important;
+                font-weight: 600;
+                padding: 12px 16px !important;
+                border-bottom: 2px solid #dee2e6 !important;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+            }
+
+            .custom-grid td {
+                padding: 10px 16px !important;
+                vertical-align: middle !important;
+                border-bottom: 1px solid #e9ecef !important;
+                color: #333333;
+            }
+
+            .custom-grid tr:hover {
+                background-color: #f8f9fa !important;
+            }*/
+
+        /* 1. ઈમેજ ચોરસ (Square) કરવા માટે */
+        /*.student-img {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 4px;*/ /* એકદમ સીધા ખૂણા જોઈતા હોય તો આ લાઈન કાઢી નાખવી */
+            /*border: 1px solid #ccc;
+        }*/
+
+        /* 2. સાદું અને ક્લીન Delete Button */
+        /*.btn-delete {
+            color: #dc3545 !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+            .btn-delete:hover {
+                color: #a71d2a !important;
+                text-decoration: underline !important;
+            }*/
+        .custom-grid {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        background-color: #ffffff;
+        font-size: 0.82rem !important; /* ટેબલના અક્ષરો નાના કર્યા */
+    }
+
+    /* 2. ટેબલનું હેડર (Header Columns) */
+    .custom-grid th {
+        background-color: #f8f9fa !important;
+        color: #495057 !important;
+        font-weight: 600;
+        padding: 6px 10px !important; /* ઊંચાઈ અને જગ્યા ઓછી કરી */
+        border-bottom: 2px solid #dee2e6 !important;
+        text-transform: uppercase;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.5px;
+    }
+
+    /* 3. ટેબલના રો (Data Cells) */
+    .custom-grid td {
+        padding: 5px 10px !important; /* રો ની સાઈઝ એકદમ નાની રાખી */
+        vertical-align: middle !important;
+        border-bottom: 1px solid #e9ecef !important;
+        color: #333333;
+    }
+
+    /* 4. હોવર ઈફેક્ટ */
+    .custom-grid tr:hover {
+        background-color: #f8f9fa !important;
+    }
+
+    /* 5. ચોરસ અને નાની પ્રોફાઇલ ઈમેજ */
+    .student-img {
+        width: 38px !important; /* ઈમેજ ની પહોળાઈ */
+        height: 38px !important; /* ઈમેજ ની ઊંચાઈ */
+        object-fit: cover;
+        border-radius: 4px; /* હળવા ચારેય ખૂણા (ચોરસ લુક) */
+        border: 1px solid #d1d5db;
+        display: block;
+    }
+
+    /* 6. નાનું અને સાદું Delete Button */
+    .btn-delete {
+        color: #dc3545 !important;
+        text-decoration: none !important;
+        font-weight: 500;
+        font-size: 0.8rem !important;
+        padding: 2px 6px;
+    }
+
+    .btn-delete:hover {
+        color: #a71d2a !important;
+        text-decoration: underline !important;
+    }
+    </style>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
 </asp:Content>
-<asp:Content ID="Content5" runat="server" contentplaceholderid="ContentPlaceHolder2">
-   <%-- <main>
+<asp:Content ID="Content5" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
+    <%-- <main>
     <section class="hero-section py-5">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -328,7 +436,7 @@
     </main>--%>
 
     <div class="container py-4">
-        
+
         <!-- Header Card -->
         <div class="card shadow-sm border-0 rounded-4 mb-4 p-4">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
@@ -365,7 +473,7 @@
             </div>
         </div>
 
-        <!-- Dynamic Table (Structure Ready for Database Rows) -->
+        <%-- <!-- Dynamic Table (Structure Ready for Database Rows) -->
         <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -377,20 +485,114 @@
                                 <th class="py-3 text-secondary">Gender</th>
                                 <th class="py-3 text-secondary">Email</th>
                                 <th class="py-3 text-secondary">Photo</th>
-                                <%--<th class="py-3 text-secondary text-center">Action</th>--%>
+                              
                             </tr>
                         </thead>
                         <tbody id="studentTableBody" runat="server">
-                            <!-- જ્યારે Backend ડેટાબેઝ સાથે લિંક કરશો ત્યારે C# કોડ/Repeater થી Dynamic Rows અહીં Bind થશે -->
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>--%>
+
+        <%--<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">--%>
+        <%-- <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
+            <Columns>
+                <asp:TemplateField HeaderText="Id">
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Name">
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Gender">
+                    <ItemTemplate>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("Gender") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Email">
+                    <ItemTemplate>
+                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Image">
+                    <ItemTemplate>
+                        <%-- <asp:Image ID="Image1"  Hight="50" Width="50" runat="server" ImageUrl='<%# Eval("Image") %>' />--%>
+
+        <%-- <asp:Image ID="Image1" Height="100px" Width="100px" runat="server" ImageUrl='<%# Eval("Image") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%# Eval("Id") %>' CommandName="cmd_dlt">Delete</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+
+        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+
+    </div>--%>
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-4">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+                        OnRowCommand="GridView1_RowCommand"
+                        CssClass="table table-hover custom-grid align-middle mb-0"
+                        GridLines="None">
+                        <Columns>
+                            <asp:TemplateField HeaderText="ID">
+                                <ItemTemplate>
+                                    <span class="fw-bold text-secondary">#<%# Eval("Id") %></span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Name">
+                                <ItemTemplate>
+                                    <span class="fw-semibold text-dark"><%# Eval("Name") %></span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Gender">
+                                <ItemTemplate>
+                                    <span class="badge bg-light text-dark border"><%# Eval("Gender") %></span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Email">
+                                <ItemTemplate>
+                                    <span class="text-muted"><%# Eval("Email") %></span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Photo">
+                                <ItemTemplate>
+                                    <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Image") %>' CssClass="student-img" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Action">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton1" runat="server"
+                                        CommandArgument='<%# Eval("Id") %>'
+                                        CommandName="cmd_dlt"
+                                        CssClass="btn-delete">
+                                <i class="fa-solid fa-trash me-1"></i> Delete
+                            </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
         </div>
 
+        <!-- JavaScript File -->
+        <script src="js/script.js"></script>
     </div>
-
-    <!-- JavaScript File -->
-   <script src="js/script.js"></script>
 </asp:Content>
 

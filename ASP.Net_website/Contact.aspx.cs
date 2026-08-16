@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,30 +12,29 @@ namespace ASP.Net_website
 {
     public partial class Contact : System.Web.UI.Page
     {
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
 
             
-            if (Request.QueryString["success"] == "true")
-            {
-                if (Session["ContactName"] != null)
-                {
-                    lblContactStatus.Text = "<b>Status:</b> Message Sent Successfully!<br />" +
-                                            "<b>Name:</b> " + Session["ContactName"] + "<br />" +
-                                            "<b>Email:</b> " + Session["ContactEmail"] + "<br />" +
-                                            "<b>Message:</b> " + Session["ContactMsg"];
 
-                    
-                    Session.Remove("ContactName");
-                    Session.Remove("ContactEmail");
-                    Session.Remove("ContactMsg");
-                }
+            
+            if (Session["msg"] != null)
+            {
+                lblContactStatus.ForeColor = Color.Green;
+                lblContactStatus.Text = Session["msg"].ToString();
+
+              
+                Session.Remove("msg");
             }
             else
             {
-               
+              
                 lblContactStatus.Text = "";
             }
+
+
+
         }
 
         protected void txtMessage_TextChanged(object sender, EventArgs e)
@@ -42,13 +44,24 @@ namespace ASP.Net_website
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
+
            
-            Session["ContactName"] = txtName.Text;
-            Session["ContactEmail"] = txtEmail.Text;
-            Session["ContactMsg"] = txtMessage.Text;
+            string q = "insert into contact(name, email, message) values('" + txtName.Text + "', '" + txtEmail.Text + "', '" + txtMessage.Text + "')";
+
+            SqlCommand cmd = new SqlCommand(q, con);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            
+            Session["msg"] = "Message Sent Successfully!";
 
           
-            Response.Redirect("Contact.aspx?success=true");
+            Response.Redirect("Contact.aspx");
+
+
+
         }
     }
 }

@@ -63,6 +63,16 @@ namespace ASP.Net_website
             txtPassword.Text = "";
         }
 
+        //void gridfill()
+        //{
+        //    getcon();
+        //    da = new SqlDataAdapter("select * from emp_tbl", con);
+        //    ds = new DataSet();
+        //    da.Fill(ds);
+        //    GridView1.DataSource = ds;
+        //    GridView1.DataBind();
+        //}
+
 
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
@@ -79,8 +89,7 @@ namespace ASP.Net_website
             clear();
 
 
-            //Session["RegName"] = txtnm.Text;
-            //Session["RegEmail"] = txtEmail.Text;
+          
 
 
             Response.Redirect("StudentRegistration.aspx?registration=success");
