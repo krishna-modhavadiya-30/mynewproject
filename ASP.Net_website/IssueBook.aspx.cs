@@ -18,7 +18,7 @@ namespace ASP.Net_website
            
 
             string student = txtnm.Text;
-            string book = DropDownList1.SelectedItem.Text;
+            string book = txtbook.Text;
             string issueDate = TextBox1.Text;
             string returnDate = TextBox2.Text;
 
@@ -30,7 +30,7 @@ namespace ASP.Net_website
 
          
             txtnm.Text = "";
-            DropDownList1.SelectedIndex = 0;
+            txtbook.Text = "";
             TextBox1.Text = "";
             TextBox2.Text = "";
         }

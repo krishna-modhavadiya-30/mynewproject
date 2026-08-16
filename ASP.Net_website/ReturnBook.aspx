@@ -20,14 +20,17 @@
                             <asp:RequiredFieldValidator ID="rfvStudent" runat="server" ControlToValidate="txtStudent" Display="Dynamic" ForeColor="Red" ErrorMessage="Please enter student name"></asp:RequiredFieldValidator>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Issued Book</label>
+                           <%-- <label class="form-label">Issued Book</label>
                             <asp:DropDownList ID="ddlBook" runat="server" class="form-select">
                                 <asp:ListItem Text="Select Issued Book" Value="" Selected="True"></asp:ListItem>
                                 <asp:ListItem>Clean Code</asp:ListItem>
                                 <asp:ListItem>Physics for Engineers</asp:ListItem>
                                 <asp:ListItem>The Modern Web</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvBook" runat="server" ControlToValidate="ddlBook" InitialValue="" Display="Dynamic" ForeColor="Red" ErrorMessage="Please select a book"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfvBook" runat="server" ControlToValidate="ddlBook" InitialValue="" Display="Dynamic" ForeColor="Red" ErrorMessage="Please select a book"></asp:RequiredFieldValidator>--%>
+                            <label class="form-label">Issued Book</label>
+                            <asp:TextBox ID="txtbook" CssClass="form-control" runat="server" placeholder="Enter Book Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtbook"></asp:RequiredFieldValidator>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">

@@ -1,0 +1,74 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Librarian.master.cs" Inherits="ASP.Net_website.Librarian" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Librarian Panel | Campus Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/librarian.css" />
+    <asp:ContentPlaceHolder ID="LibrarianHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="LibrarianForm" runat="server">
+        <div class="lib-container">
+            <!-- Sidebar -->
+            <aside class="lib-sidebar">
+                <div class="lib-sidebar-header">
+                    <div class="lib-avatar">L</div>
+                    <a href="LibrarianDashboard.aspx" class="lib-sidebar-brand">Librarian Panel</a>
+                </div>
+                <ul class="lib-sidebar-menu">
+                    <li class="lib-sidebar-item">
+                        <a href="LibrarianDashboard.aspx" class="lib-sidebar-link <%= Request.Url.AbsolutePath.EndsWith("LibrarianDashboard.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>">
+                            <span>📊</span> Dashboard
+                        </a>
+                    </li>
+                    <li class="lib-sidebar-item">
+                        <a href="LibrarianManageIssues.aspx" class="lib-sidebar-link <%= Request.Url.AbsolutePath.EndsWith("LibrarianManageIssues.aspx", StringComparison.OrdinalIgnoreCase) ? "active" : "" %>">
+                            <span>📚</span> Manage Book Issues
+                        </a>
+                    </li>
+                    <li class="lib-sidebar-item" style="margin-top: 40px; border-top: 1px solid #1e293b; padding-top: 20px;">
+                        <a href="Home.aspx" class="lib-sidebar-link">
+                            <span>🏠</span> Back to Main Website
+                        </a>
+                    </li>
+                </ul>
+                <div class="lib-sidebar-footer">
+                    <small>Campus Library v1.0</small>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main class="lib-main">
+                <!-- Top Navbar -->
+                <header class="lib-navbar">
+                    <h2 class="lib-page-title">
+                        <asp:ContentPlaceHolder ID="LibrarianTitlePlaceHolder" runat="server">
+                            Dashboard
+                        </asp:ContentPlaceHolder>
+                    </h2>
+                    <div class="lib-user-profile">
+                        <div class="lib-avatar">LA</div>
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="font-weight: 600; font-size: 0.875rem; color: var(--lib-dark);">Librarian Account</span>
+                            <span style="font-size: 0.75rem; color: var(--lib-muted);">Active Session</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Content Area -->
+                <div class="lib-content">
+                    <asp:ContentPlaceHolder ID="LibrarianContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </main>
+        </div>
+    </form>
+</body>
+</html>

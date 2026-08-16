@@ -21,15 +21,19 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Book</label>
-                            <asp:DropDownList ID="DropDownList1" runat="server" class="form-select">
+                           <%-- <asp:DropDownList ID="DropDownList1" runat="server" class="form-select">
                                 <asp:ListItem Text="Select Book" Value="" Selected="True" Disabled="True"></asp:ListItem>
                                 <asp:ListItem>Clean Code</asp:ListItem>
                                 <asp:ListItem>Physics for Engineers</asp:ListItem>
                                 <asp:ListItem>The Modern Web</asp:ListItem>
                                 <asp:ListItem>Human Anatomy</asp:ListItem>
                                 <asp:ListItem>History of Time</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="DropDownList1" InitialValue="" Display="Dynamic" ForeColor="Red" runat="server" ErrorMessage="Please Select Book"></asp:RequiredFieldValidator>
+                            </asp:DropDownList>--%>
+
+                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="DropDownList1" InitialValue="" Display="Dynamic" ForeColor="Red" runat="server" ErrorMessage="Please Select Book"></asp:RequiredFieldValidator>--%>
+
+                            <asp:TextBox ID="txtbook" runat="server"  class="form-control" placeholder="Enter Book name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtbook" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">

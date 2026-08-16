@@ -25,7 +25,7 @@ namespace ASP.Net_website
         {
            
             Session["StudentName"] = txtStudent.Text;
-            Session["BookName"] = ddlBook.SelectedValue;
+            Session["BookName"] = txtbook.Text;
             Session["ReturnDate"] = txtReturnDate.Text;
             Session["FineAmount"] = string.IsNullOrEmpty(txtFineAmount.Text) ? "0" : txtFineAmount.Text;
 

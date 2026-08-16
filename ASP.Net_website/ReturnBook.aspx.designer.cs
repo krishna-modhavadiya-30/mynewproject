@@ -33,22 +33,22 @@ namespace ASP.Net_website
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStudent;
 
         /// <summary>
-        /// ddlBook control.
+        /// txtbook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBook;
+        protected global::System.Web.UI.WebControls.TextBox txtbook;
 
         /// <summary>
-        /// rfvBook control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBook;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
         /// txtReturnDate control.
