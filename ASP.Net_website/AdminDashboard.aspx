@@ -69,9 +69,9 @@
                 <div class="row g-4 justify-content-center">
                         <div class="col-md-4">
                                 <div class="page-card p-4 h-100 text-center position-relative">
-                                        <h3 class="fw-bold mb-3">Search Book</h3>
-                                        <p class="text-muted">Search the library collection before issuing or returning a book.</p>
-                                        <a href="BookSearch.aspx" class="btn btn-primary stretched-link">Search Book</a>
+                                        <h3 class="fw-bold mb-3">Contact us </h3>
+                                        <p class="text-muted">massege form user to conatct to admin </p>
+                                        <a href="Admin_Contact.aspx" class="btn btn-primary stretched-link">Contact us </a>
                                 </div>
                         </div>
                         <div class="col-md-4">
@@ -92,7 +92,7 @@
                                 <div class="page-card p-4 h-100 text-center">
                                         <h3 class="fw-bold mb-3">Add Book</h3>
                                         <p class="text-muted">Add a new book to the library collection.</p>
-                                        <a href="AddBook.aspx" class="btn btn-primary">Add Book</a>
+                                        <a href="Add_Category.aspx" class="btn btn-primary">Add Book</a>
                                 </div>
                         </div>
                 </div>

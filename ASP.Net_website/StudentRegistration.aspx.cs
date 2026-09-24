@@ -32,15 +32,7 @@ namespace ASP.Net_website
         {
 
 
-            if (Request.QueryString["registration"] == "success")
-            {
-                lblStatus.Text = "<b>Status:</b> Registration Successful!<br />" +
-                                "<b>Name:</b> " + Session["RegName"] + "<br />" +
-                                "<b>Gender:</b> " + Session["RegGender"] + "<br />" +
-                                "<b>Email:</b> " + Session["RegEmail"] +
-                                "<b>Photo:</b> " + Session["RegPhoto"];
 
-            }
         }
 
         void getcon()
@@ -63,16 +55,7 @@ namespace ASP.Net_website
             txtPassword.Text = "";
         }
 
-        //void gridfill()
-        //{
-        //    getcon();
-        //    da = new SqlDataAdapter("select * from emp_tbl", con);
-        //    ds = new DataSet();
-        //    da.Fill(ds);
-        //    GridView1.DataSource = ds;
-        //    GridView1.DataBind();
-        //}
-
+       
 
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
@@ -81,18 +64,18 @@ namespace ASP.Net_website
         protected void btnRegister_Click(object sender, EventArgs e)
         {
 
+           
             getcon();
             imgupload();
-            cmd = new SqlCommand("insert into [user](Name,Gender,Email,Password,Image)values('" + txtnm.Text + "','" + rdbgen.SelectedValue + "','" + txtEmail.Text + "','" + txtPassword.Text + "','" + fnm + "')", con);
+
+            cmd = new SqlCommand("insert into [user](Name,Gender,Email,Password,Image) values('" + txtnm.Text + "','" + rdbgen.SelectedValue + "','" + txtEmail.Text + "','" + txtPassword.Text + "','" + fnm + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
+
             clear();
 
-
-          
-
-
-            Response.Redirect("StudentRegistration.aspx?registration=success");
+           
+            Response.Redirect("UserLogin.aspx");
         }
     }
 }

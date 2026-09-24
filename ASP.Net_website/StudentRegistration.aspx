@@ -88,7 +88,7 @@
                         <asp:Button ID="btnRegister" runat="server" Text="Register" class="btn btn-outline-primary w-100" OnClick="btnRegister_Click" />
 
                         <div class="mt-3">
-                            <asp:Label ID="lblStatus" runat="server" Font-Bold="True" ForeColor="#198754" Text=""></asp:Label>
+                            <%--<asp:Label ID="lblStatus" runat="server" Font-Bold="True" ForeColor="#198754" Text=""></asp:Label>--%>
                         </div>
 
                         <p class="text-center text-muted mt-3 mb-0">Already have an account? <a href="UserLogin.aspx" class="text-decoration-none">Login here</a></p>

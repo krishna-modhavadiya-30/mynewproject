@@ -2,107 +2,59 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <!-- Bootstrap 5 CSS (આના લીધે ડિઝાઈન સેટ થતી ન હતી) -->
+   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- FontAwesome Icons -->
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- Custom CSS -->
+ 
     <link href="css/style.css" rel="stylesheet" />
-    <!-- 🔻 GridView ને સુંદર બનાવવા માટેનું Custom CSS 🔻 -->
+    
     <style>
-        /*.custom-grid {
-            width: 100% !important;
-            border-collapse: collapse !important;
-            background-color: #ffffff;
-        }
-
-            .custom-grid th {
-                background-color: #f8f9fa !important;
-                color: #495057 !important;
-                font-weight: 600;
-                padding: 12px 16px !important;
-                border-bottom: 2px solid #dee2e6 !important;
-                text-transform: uppercase;
-                font-size: 0.85rem;
-            }
-
-            .custom-grid td {
-                padding: 10px 16px !important;
-                vertical-align: middle !important;
-                border-bottom: 1px solid #e9ecef !important;
-                color: #333333;
-            }
-
-            .custom-grid tr:hover {
-                background-color: #f8f9fa !important;
-            }*/
-
-        /* 1. ઈમેજ ચોરસ (Square) કરવા માટે */
-        /*.student-img {
-            width: 55px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 4px;*/ /* એકદમ સીધા ખૂણા જોઈતા હોય તો આ લાઈન કાઢી નાખવી */
-            /*border: 1px solid #ccc;
-        }*/
-
-        /* 2. સાદું અને ક્લીન Delete Button */
-        /*.btn-delete {
-            color: #dc3545 !important;
-            text-decoration: none !important;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-            .btn-delete:hover {
-                color: #a71d2a !important;
-                text-decoration: underline !important;
-            }*/
+        
         .custom-grid {
         width: 100% !important;
         border-collapse: collapse !important;
         background-color: #ffffff;
-        font-size: 0.82rem !important; /* ટેબલના અક્ષરો નાના કર્યા */
+        font-size: 0.82rem !important; 
     }
 
-    /* 2. ટેબલનું હેડર (Header Columns) */
+    
     .custom-grid th {
         background-color: #f8f9fa !important;
         color: #495057 !important;
         font-weight: 600;
-        padding: 6px 10px !important; /* ઊંચાઈ અને જગ્યા ઓછી કરી */
+        padding: 6px 10px !important; 
         border-bottom: 2px solid #dee2e6 !important;
         text-transform: uppercase;
         font-size: 0.75rem !important;
         letter-spacing: 0.5px;
     }
 
-    /* 3. ટેબલના રો (Data Cells) */
     .custom-grid td {
-        padding: 5px 10px !important; /* રો ની સાઈઝ એકદમ નાની રાખી */
+        padding: 5px 10px !important; 
         vertical-align: middle !important;
         border-bottom: 1px solid #e9ecef !important;
         color: #333333;
     }
 
-    /* 4. હોવર ઈફેક્ટ */
+    
     .custom-grid tr:hover {
         background-color: #f8f9fa !important;
     }
 
-    /* 5. ચોરસ અને નાની પ્રોફાઇલ ઈમેજ */
+   
     .student-img {
-        width: 38px !important; /* ઈમેજ ની પહોળાઈ */
-        height: 38px !important; /* ઈમેજ ની ઊંચાઈ */
+        width: 38px !important; 
+        height: 38px !important; 
         object-fit: cover;
-        border-radius: 4px; /* હળવા ચારેય ખૂણા (ચોરસ લુક) */
+        border-radius: 4px; 
         border: 1px solid #d1d5db;
         display: block;
     }
 
-    /* 6. નાનું અને સાદું Delete Button */
+ 
     .btn-delete {
         color: #dc3545 !important;
         text-decoration: none !important;

@@ -39,10 +39,9 @@ namespace ASP.Net_website
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            
                 gridfill();
-            }
+            
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,8 +58,7 @@ namespace ASP.Net_website
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                //Label3.Text = "Record Deleted Successfully!";
-
+                
                 
                 gridfill();
             }

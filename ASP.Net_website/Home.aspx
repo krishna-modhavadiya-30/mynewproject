@@ -41,8 +41,11 @@
                             <li class="nav-item"><a class="nav-link" href="Contact.aspx">Contact</a></li>
                             <li class="nav-item dropdown ms-lg-3"><a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                                   
                                     <li><a class="dropdown-item" href="UserLogin.aspx">User Login</a></li>
+                                     <li><a class="dropdown-item" href="UserProfile.aspx">User Profile</a></li>
                                     <li><a class="dropdown-item" href="LibrarianLogin.aspx">Librarian Panel</a></li>
+
                                     <%--<a href="LibrarianLogin.aspx" runat="server">Librarian Login</a>--%>
                                     <li>
                                         <hr class="dropdown-divider">
