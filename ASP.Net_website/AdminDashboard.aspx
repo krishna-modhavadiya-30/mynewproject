@@ -78,14 +78,14 @@
                                 <div class="page-card p-4 h-100 text-center position-relative">
                                         <h3 class="fw-bold mb-3">Issue Book</h3>
                                         <p class="text-muted">Open the original book issue form.</p>
-                                        <a href="<%= ResolveUrl("~/AdminIssueBook.aspx") %>" class="btn btn-primary stretched-link">Issue Book</a>
+                                        <a href="<%= ResolveUrl("~/IssueBook.aspx") %>" class="btn btn-primary stretched-link">Issue Book</a>
                                 </div>
                         </div>
                         <div class="col-md-4">
                                 <div class="page-card p-4 h-100 text-center position-relative">
                                         <h3 class="fw-bold mb-3">Return Book</h3>
                                         <p class="text-muted">Open the original book return form.</p>
-                                        <a href="<%= ResolveUrl("~/AdminReturnBook.aspx") %>" class="btn btn-primary stretched-link">Return Book</a>
+                                        <a href="<%= ResolveUrl("~/ReturnBook.aspx") %>" class="btn btn-primary stretched-link">Return Book</a>
                                 </div>
                         </div>
                         <div class="col-md-4">

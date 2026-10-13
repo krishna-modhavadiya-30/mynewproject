@@ -24,9 +24,9 @@
         }
 
         .btn-home {
-            background-color: #e0f2fe; /* આછો સ્કાય બ્લુ કલર */
-            color: #0284c7; /* ઘાટો બ્લુ ટેક્સ્ટ (જેથી સરસ વંચાય) */
-            border: 1px solid #bae6fd; /* લાઇટ બોર્ડર */
+            background-color: #e0f2fe;
+            color: #0284c7;
+            border: 1px solid #bae6fd;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 13px;

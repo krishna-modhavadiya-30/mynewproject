@@ -73,5 +73,10 @@ namespace ASP.Net_website
             Session.Clear();
             Response.Redirect("UserLogin.aspx");
         }
+
+        protected void gridStudentBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

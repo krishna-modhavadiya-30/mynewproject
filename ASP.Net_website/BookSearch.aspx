@@ -27,14 +27,14 @@
                             <asp:ListItem Text="History" Value="history" />
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-3 col-lg-3">
+                   <%-- <div class="col-md-3 col-lg-3">
                         <label class="form-label">Availability</label>
                         <asp:DropDownList ID="availabilityFilter" runat="server" ClientIDMode="Static" CssClass="form-select">
                             <asp:ListItem Text="Any availability" Value="" />
                             <asp:ListItem Text="Available" Value="available" />
                             <asp:ListItem Text="Out of stock" Value="out-of-stock" />
                         </asp:DropDownList>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,30 +11,37 @@ namespace ASP.Net_website
 {
     public partial class IssueBook : System.Web.UI.Page
     {
+        SqlConnection con;
+        SqlCommand cmd;
+
+        string s = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
+
+        void getcon()
+        {
+            con = new SqlConnection(s);
+            con.Open();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+            
+            lblIssue.Text = "";
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
 
-            string student = txtnm.Text;
-            string book = txtbook.Text;
-            string issueDate = TextBox1.Text;
-            string returnDate = TextBox2.Text;
+            getcon();
 
-            lblIssue.Text = "<h4>Book Issued Successfully!</h4><br/>" +
-                            "<b>Student Name:</b> " + student + "<br/>" +
-                            "<b>Book Name:</b> " + book + "<br/>" +
-                            "<b>Issue Date:</b> " + issueDate + "<br/>" +
-                            "<b>Return Date:</b> " + returnDate;
+            string q = "INSERT INTO IssueReturn_tbl (StudentName, BookName, IssueDate, ReturnDate, Status, FineAmount) VALUES ('" + txtnm.Text + "', '" + txtbook.Text + "', '" + TextBox1.Text + "', '" + TextBox2.Text + "', 'Pending', 0)";
 
-         
-            txtnm.Text = "";
-            txtbook.Text = "";
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+            cmd = new SqlCommand(q, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+          
+            Response.Redirect("IssueBook.aspx?msg=success");
         }
     }
 }

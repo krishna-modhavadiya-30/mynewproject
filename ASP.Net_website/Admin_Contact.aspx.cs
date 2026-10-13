@@ -39,11 +39,9 @@ namespace ASP.Net_website
         {
 
 
-            if (!IsPostBack)
-            {
-                fillgrid();
-            }
+            
 
+          fillgrid();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

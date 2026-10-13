@@ -57,11 +57,10 @@ namespace ASP.Net_website
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-            // Session hoy ke na hoy, DropDownList pehli vaar load thaye fill thai jase
-            if (!IsPostBack)
+            if (ViewState["combo"] == null)
             {
                 fillcombo();
+                ViewState["combo"] = true;
             }
 
             if (Session["admin"] != null)

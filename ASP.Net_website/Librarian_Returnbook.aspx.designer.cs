@@ -15,21 +15,21 @@ namespace ASP.Net_website.css
     {
 
         /// <summary>
-        /// btnBack control.
+        /// lblMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btnBack;
+        protected global::System.Web.UI.WebControls.Label lblMsg;
 
         /// <summary>
-        /// tableBody control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableBody;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

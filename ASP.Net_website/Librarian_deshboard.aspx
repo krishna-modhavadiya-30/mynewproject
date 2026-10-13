@@ -340,13 +340,13 @@
                     <p>Total Books</p>
                 </div>
             </div>
-            <div class="stat-card">
+           <%-- <div class="stat-card">
                 <div class="stat-icon bg-green">📖</div>
                 <div class="stat-info">
                     <h3><asp:Label ID="lblIssuedBooks" runat="server" Text="0"></asp:Label></h3>
                     <p>Issued Books</p>
                 </div>
-            </div>
+            </div>--%>
             <div class="stat-card">
                 <div class="stat-icon bg-purple">🔄</div>
                 <div class="stat-info">
@@ -367,19 +367,19 @@
         <div class="dashboard-content" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
             
             <div class="quick-actions-card" style="text-align: center;">
-                <h3>Book Availability</h3>
+                <h3>Laibrariyan Approved</h3>
                 <p style="color: var(--muted); font-size: 0.9rem;">See Book Availability Status</p>
-                <a href="Librarian_Availability.aspx" class="action-btn">Book Availability</a>
+                <a href="LibrarianApprove.aspx" class="action-btn">Librariyan Approve </a>
             </div>
 
-            <div class="quick-actions-card" style="text-align: center;">
+           <%-- <div class="quick-actions-card" style="text-align: center;">
                 <h3>Issue Book</h3>
                 <p style="color: var(--muted); font-size: 0.9rem;">Issue new book to student</p>
                 <a href="Librarian_IssueBook.aspx" class="action-btn">Issue Book</a>
-            </div>
+            </div>--%>
 
             <div class="quick-actions-card" style="text-align: center;">
-                <h3>Return Book</h3>
+                <h3>Laibrariyan Return Record</h3>
                 <p style="color: var(--muted); font-size: 0.9rem;">Process book return</p>
                 <a href="Librarian_Returnbook.aspx" class="action-btn">Return Book</a>
             </div>

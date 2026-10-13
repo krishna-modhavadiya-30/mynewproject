@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Category Wise Books</title>
-   <style>
+    <style>
         * {
             box-sizing: border-box;
         }
@@ -48,18 +48,18 @@
             margin: 0 auto;
         }
 
-        /* Spacing between cards increased (32px gap) */
-        .datalist-wrapper table {
-            border-collapse: separate;
-            border-spacing: 32px 20px;
-            border: none !important;
-        }
+            /* Spacing between cards increased (32px gap) */
+            .datalist-wrapper table {
+                border-collapse: separate;
+                border-spacing: 32px 20px;
+                border: none !important;
+            }
 
-        .datalist-wrapper td {
-            border: none !important;
-            padding: 0 !important;
-            vertical-align: top;
-        }
+            .datalist-wrapper td {
+                border: none !important;
+                padding: 0 !important;
+                vertical-align: top;
+            }
 
         /* Compact Book Card Item Design */
         .book-card {
@@ -74,10 +74,10 @@
             flex-direction: column;
         }
 
-        .book-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0px 12px 28px rgba(67, 24, 255, 0.15);
-        }
+            .book-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0px 12px 28px rgba(67, 24, 255, 0.15);
+            }
 
         /* Reduced Image Height Container */
         .img-container {
@@ -90,14 +90,14 @@
             background-color: #f8fafc;
         }
 
-        .img-container img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            object-position: center;
-            display: block;
-            transition: transform 0.4s ease;
-        }
+            .img-container img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center;
+                display: block;
+                transition: transform 0.4s ease;
+            }
 
         .book-card:hover .img-container img {
             transform: scale(1.05);
@@ -152,10 +152,10 @@
             transition: all 0.2s ease;
         }
 
-        .btn-view:hover {
-            background-color: #4318ff;
-            color: #ffffff;
-        }
+            .btn-view:hover {
+                background-color: #4318ff;
+                color: #ffffff;
+            }
 
         .btn-issue {
             display: block;
@@ -171,15 +171,15 @@
             transition: all 0.2s ease;
         }
 
-        .btn-issue:hover {
-            background-color: #2563eb;
-        }
+            .btn-issue:hover {
+                background-color: #2563eb;
+            }
     </style>
 </head>
 <body>
-   
+
     <form id="form1" runat="server">
-        
+
         <!-- Header Section -->
         <div class="page-header">
             <div class="page-subtitle">Library Administration</div>
@@ -188,7 +188,7 @@
 
         <!-- DataList Section -->
         <div class="datalist-wrapper">
-<asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="5" OnSelectedIndexChanged="DataList1_SelectedIndexChanged" CellSpacing="20">
+            <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="5" OnSelectedIndexChanged="DataList1_SelectedIndexChanged" CellSpacing="20">
                 <ItemTemplate>
                     <div class="book-card">
                         <div class="img-container">
@@ -196,17 +196,18 @@
                         </div>
 
                         <asp:Label ID="lblBnm" runat="server" CssClass="book-title" Text='<%# Eval("Book_Name") %>'></asp:Label>
-                        
+
                         <div class="book-info">
-                            Author: <asp:Label ID="lblAuth" runat="server" Text='<%# Eval("Book_Author") %>' Font-Bold="True"></asp:Label>
+                            Author:
+                            <asp:Label ID="lblAuth" runat="server" Text='<%# Eval("Book_Author") %>' Font-Bold="True"></asp:Label>
                         </div>
-                        
+
                         <div class="book-price">
                             Price: ₹<asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Book_Price") %>'></asp:Label>
                         </div>
 
                         <div class="card-actions">
-                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn-view" PostBackUrl='<%# "bookdetail.aspx?bid=" + Eval("Book_Id") %>'>View Detail</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn-view" PostBackUrl='<%# "viewdetails.aspx?bid=" + Eval("Book_Id") %>'>View Detail</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn-issue" PostBackUrl='<%# "issuebook.aspx?bid=" + Eval("Book_Id") %>'>Issue Book</asp:LinkButton>
                         </div>
                     </div>

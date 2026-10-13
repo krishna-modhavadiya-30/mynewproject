@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,27 +11,59 @@ namespace ASP.Net_website
 {
     public partial class ReturnBook : System.Web.UI.Page
     {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        string s = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
+
+        void getcon()
+        {
+            con = new SqlConnection(s);
+            con.Open();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["return"] == "success")
+           
             {
-                lblReturnStatus.Text = "<b>Status:</b> Book Returned Successfully!<br />" +
-                                       "<b>Student Name:</b> " + Session["StudentName"] + "<br />" +
-                                       "<b>Book Name:</b> " + Session["BookName"] + "<br />" +
-                                       "<b>Return Date:</b> " + Session["ReturnDate"] + "<br />" +
-                                       "<b>Fine Charged:</b> ₹" + Session["FineAmount"];
+
+                {
+                    lblReturn.Text = "";
+                }
             }
         }
 
+
         protected void btnReturnBook_Click(object sender, EventArgs e)
         {
-           
-            Session["StudentName"] = txtStudent.Text;
-            Session["BookName"] = txtbook.Text;
-            Session["ReturnDate"] = txtReturnDate.Text;
-            Session["FineAmount"] = string.IsNullOrEmpty(txtFineAmount.Text) ? "0" : txtFineAmount.Text;
 
-            Response.Redirect("ReturnBook.aspx?return=success");
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click1(object sender, EventArgs e)
+        {
+            getcon();
+
+
+           
+            string q = "UPDATE IssueReturn_tbl SET ReturnDate='" + TextBox1.Text + "', Status='Returned' WHERE StudentName='" + txtnm.Text.Trim() + "' AND BookName='" + txtbook.Text.Trim() + "' AND Status='Approved'";
+            cmd = new SqlCommand(q, con);
+            int rows = cmd.ExecuteNonQuery();
+            con.Close();
+
+            if (rows > 0)
+            {
+                Response.Redirect("ReturnBook.aspx?msg=success");
+            }
+            else
+            {
+                Response.Redirect("ReturnBook.aspx?msg=error");
+            }
         }
     }
 }

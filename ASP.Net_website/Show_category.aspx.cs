@@ -21,13 +21,11 @@ namespace ASP.Net_website
         protected void Page_Load(object sender, EventArgs e)
 
         {
-           
-            if (!IsPostBack)
-            {
-                filldatalis();
-            }
 
-            
+           
+            filldatalis();
+
+
             if (Session["admin"] != null)
             {
                 getcon();
@@ -38,7 +36,7 @@ namespace ASP.Net_website
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     nm = ds.Tables[0].Rows[0]["Name"].ToString();
-                    Label1.Text = "Welcome " + nm;
+                    
                 }
             }
            

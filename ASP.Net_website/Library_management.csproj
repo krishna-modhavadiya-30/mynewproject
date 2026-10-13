@@ -68,29 +68,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AddBook.aspx" />
     <Content Include="Add_Books.aspx" />
     <Content Include="Add_Category.aspx" />
-    <Content Include="AdminIssueBook.aspx" />
     <Content Include="AdminLogin.ascx" />
     <Content Include="AdminDashboard.aspx" />
-    <Content Include="AdminReturnBook.aspx" />
     <Content Include="Admin_Contact.aspx" />
     <Content Include="App_Data\mydatabase.mdf" />
     <Content Include="App_Data\mydatabase_log.ldf">
       <DependentUpon>mydatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="LibrarianApprove.aspx" />
     <Content Include="Librarian_Availability.aspx" />
     <Content Include="BookSearch.aspx" />
     <Content Include="Categories.aspx" />
-    <Content Include="ChangePassword.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="css\AdminDashboard.css" />
     <Content Include="css\admin-operations.css" />
     <Content Include="css\book-search.css" />
     <Content Include="css\librarian-custom.css" />
     <Content Include="Librarian_active_student.aspx" />
-    <Content Include="Librarian_BookSearch.aspx" />
     <Content Include="Librarian_Returnbook.aspx" />
     <Content Include="css\responsive.css" />
     <Content Include="css\style.css" />
@@ -99,7 +95,6 @@
     <Content Include="js\script.js" />
     <Content Include="LibrarianLogin.aspx" />
     <Content Include="Librarian_deshboard.aspx" />
-    <Content Include="Librarian_IssueBook.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ReturnBook.aspx" />
     <Content Include="showcategorybooks.aspx" />
@@ -107,19 +102,13 @@
     <Content Include="StudentRegistration.aspx" />
     <Content Include="UserLogin.aspx" />
     <Content Include="UserProfile.aspx" />
+    <Content Include="viewdetails.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddBook.aspx.cs">
-      <DependentUpon>AddBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddBook.aspx.designer.cs">
-      <DependentUpon>AddBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -145,13 +134,6 @@
     <Compile Include="AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminIssueBook.aspx.cs">
-      <DependentUpon>AdminIssueBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminIssueBook.aspx.designer.cs">
-      <DependentUpon>AdminIssueBook.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminLogin.ascx.cs">
       <DependentUpon>AdminLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -159,19 +141,19 @@
     <Compile Include="AdminLogin.ascx.designer.cs">
       <DependentUpon>AdminLogin.ascx</DependentUpon>
     </Compile>
-    <Compile Include="AdminReturnBook.aspx.cs">
-      <DependentUpon>AdminReturnBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminReturnBook.aspx.designer.cs">
-      <DependentUpon>AdminReturnBook.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin_Contact.aspx.cs">
       <DependentUpon>Admin_Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin_Contact.aspx.designer.cs">
       <DependentUpon>Admin_Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LibrarianApprove.aspx.cs">
+      <DependentUpon>LibrarianApprove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LibrarianApprove.aspx.designer.cs">
+      <DependentUpon>LibrarianApprove.aspx</DependentUpon>
     </Compile>
     <Compile Include="Librarian_Availability.aspx.cs">
       <DependentUpon>Librarian_Availability.aspx</DependentUpon>
@@ -194,13 +176,6 @@
     <Compile Include="Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,13 +189,6 @@
     </Compile>
     <Compile Include="Librarian_active_student.aspx.designer.cs">
       <DependentUpon>Librarian_active_student.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Librarian_BookSearch.aspx.cs">
-      <DependentUpon>Librarian_BookSearch.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Librarian_BookSearch.aspx.designer.cs">
-      <DependentUpon>Librarian_BookSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Librarian_Returnbook.aspx.cs">
       <DependentUpon>Librarian_Returnbook.aspx</DependentUpon>
@@ -256,13 +224,6 @@
     </Compile>
     <Compile Include="Librarian_deshboard.aspx.designer.cs">
       <DependentUpon>Librarian_deshboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Librarian_IssueBook.aspx.cs">
-      <DependentUpon>Librarian_IssueBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Librarian_IssueBook.aspx.designer.cs">
-      <DependentUpon>Librarian_IssueBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -320,6 +281,13 @@
     </Compile>
     <Compile Include="UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewdetails.aspx.cs">
+      <DependentUpon>viewdetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewdetails.aspx.designer.cs">
+      <DependentUpon>viewdetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

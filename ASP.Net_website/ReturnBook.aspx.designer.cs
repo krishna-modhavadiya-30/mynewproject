@@ -15,22 +15,22 @@ namespace ASP.Net_website
     {
 
         /// <summary>
-        /// txtStudent control.
+        /// txtnm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStudent;
+        protected global::System.Web.UI.WebControls.TextBox txtnm;
 
         /// <summary>
-        /// rfvStudent control.
+        /// rfv1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStudent;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv1;
 
         /// <summary>
         /// txtbook control.
@@ -42,57 +42,48 @@ namespace ASP.Net_website
         protected global::System.Web.UI.WebControls.TextBox txtbook;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rfv2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv2;
 
         /// <summary>
-        /// txtReturnDate control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReturnDate;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
-        /// rfvReturnDate control.
+        /// rfv3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvReturnDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv3;
 
         /// <summary>
-        /// txtFineAmount control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFineAmount;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// btnReturnBook control.
+        /// lblReturn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReturnBook;
-
-        /// <summary>
-        /// lblReturnStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReturnStatus;
+        protected global::System.Web.UI.WebControls.Label lblReturn;
     }
 }

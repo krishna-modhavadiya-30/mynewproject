@@ -1,7 +1,71 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Librarian_Returnbook.aspx.cs" Inherits="ASP.Net_website.css.Librarian_Returnbook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Librarian_Returnbook.aspx.cs" Inherits="ASP.Net_website.css.Librarian_Returnbook"  EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/style.css" rel="stylesheet" />
+    <style>
+        .grid-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .grid-title {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 22px;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 8px;
+        }
+
+        .styled-grid {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+            .styled-grid th {
+                background-color: #2563eb;
+                color: white;
+                padding: 10px;
+                text-align: left;
+                font-size: 14px;
+            }
+
+            .styled-grid td {
+                padding: 10px;
+                border-bottom: 1px solid #e2e8f0;
+                color: #334155;
+                font-size: 14px;
+            }
+
+            .styled-grid tr:hover {
+                background-color: #f8fafc;
+            }
+
+        .btn-delete {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+            .btn-delete:hover {
+                background-color: #dc2626;
+            }
+
+        .alert-msg {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
@@ -318,41 +382,52 @@
         </div>
     </section>
     </main>--%>
-    <div class="records-page-container">
+    <%-- <div style="margin: 20px;">
+        <h2>Returned Books List</h2>
 
-        <div class="records-card">
+        <asp:Label ID="lblMsg" runat="server" Font-Bold="true"></asp:Label>
+        <br />
+        <br />
 
-            <div class="card-header">
-                <h2>Returned Books Records</h2>
-                <p>List of books returned by students.</p>
-            </div>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="IssueId" OnRowDeleting="GridView1_RowDeleting" CellPadding="5" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <Columns>
+                <asp:BoundField DataField="IssueId" HeaderText="Issue ID" />
+                <asp:BoundField DataField="StudentName" HeaderText="Student Name" />
+                <asp:BoundField DataField="BookName" HeaderText="Book Name" />
+                <asp:BoundField DataField="IssueDate" HeaderText="Issue Date" />
+                <asp:BoundField DataField="ReturnDate" HeaderText="Return Date" />
+                <asp:BoundField DataField="Status" HeaderText="Status" />
 
-            <asp:HyperLink ID="btnBack" runat="server" NavigateUrl="~/Librarian_deshboard.aspx" CssClass="btn btn-outline-primary rounded-3 px-3">
-     <i class="fa-solid fa-arrow-left me-1"></i> Back to Dashboard
- </asp:HyperLink>
+                <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <asp:Button ID="btnDelete" runat="server" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>--%>
+    <!-- Form Section -->
+    <div class="grid-container">
+        <h2 class="grid-title">Returned Books List</h2>
 
-            <!-- Blank Table Container for Returned Books -->
-            <div class="table-responsive">
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>#Return ID</th>
-                            <th>Student Name</th>
-                            <th>Student Email</th>
-                            <th>Book Title</th>
-                            <th>Issue Date</th>
-                            <th>Returned Date</th>
-                            <th>Fine Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody" runat="server">
-                        <!-- સ્ટુડન્ટ બુક રિટર્ન કરશે ત્યારે ડેટા ઓટોમેટિક અહીં આવશે -->
-                    </tbody>
-                </table>
-            </div>
+        <asp:Label ID="lblMsg" runat="server" CssClass="alert-msg"></asp:Label>
 
-        </div>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="IssueId" OnRowDeleting="GridView1_RowDeleting" CssClass="styled-grid" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1">
+            <Columns>
+                <asp:BoundField DataField="IssueId" HeaderText="Issue ID" />
+                <asp:BoundField DataField="StudentName" HeaderText="Student Name" />
+                <asp:BoundField DataField="BookName" HeaderText="Book Name" />
+                <asp:BoundField DataField="IssueDate" HeaderText="Issue Date" />
+                <asp:BoundField DataField="ReturnDate" HeaderText="Return Date" />
+                <asp:BoundField DataField="Status" HeaderText="Status" />
 
+                <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <asp:Button ID="btnDelete" runat="server" CommandName="Delete" Text="Delete" CssClass="btn-delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </div>
 
     <script src="js/script.js"></script>
