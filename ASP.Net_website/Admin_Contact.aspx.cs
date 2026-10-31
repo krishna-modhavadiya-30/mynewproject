@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.Shared;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -7,6 +8,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
+
 
 namespace ASP.Net_website
 {
@@ -18,6 +23,10 @@ namespace ASP.Net_website
         DataSet ds;
 
         string s = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
+
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr
+       = new ReportDocument();
+        static string Crypath = "";
 
         void getcon()
         {
@@ -61,5 +70,32 @@ namespace ASP.Net_website
                 fillgrid();
             }
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            
+            getcon();
+            da = new SqlDataAdapter("select * from contact", con);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            string s = Server.MapPath("~/ContactData.xml");
+            ds.WriteXmlSchema(s);
+            con.Close();
+
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+
+           
+            ReportDocument cr = new ReportDocument();
+            string path = Server.MapPath("~/admin_contact.rpt");
+            cr.Load(path);
+            cr.SetDataSource(ds.Tables[0]);
+            cr.Refresh();
+
+            CrystalReportViewer1.ReportSource = cr;
+
+            cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Contact_Messages_Report");
+        }
     }
-}
+    }

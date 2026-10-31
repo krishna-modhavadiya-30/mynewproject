@@ -1,131 +1,145 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin_Contact.aspx.cs" Inherits="ASP.Net_website.Admin_Contact" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 40px;
-            color: #334155;
-        }
+  <style type="text/css">
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 40px 20px;
+        color: #334155;
+    }
 
-        .main-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .main-container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 
-        /* Top Header Card */
-        .header-card {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 24px 30px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Top Header Container for Right-Aligned Button */
+    .header-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .header-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 0 0 4px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* View Report Button - Styled & Pushed Right */
+    #Button1, .btn-report {
+        background-color: #2563eb;
+        color: #ffffff !important;
+        border: none;
+        padding: 9px 22px;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        transition: all 0.2s ease;
+        float: right;
+        margin-bottom: 15px;
+    }
 
-        .header-subtitle {
-            font-size: 14px;
-            color: #64748b;
-            margin: 0;
-        }
+    #Button1:hover, .btn-report:hover {
+        background-color: #1d4ed8;
+        transform: translateY(-1px);
+    }
 
-        /* Table Card Box */
-        .table-card {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            overflow: hidden;
-        }
+    /* Table Container Box */
+    .table-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        clear: both;
+    }
 
-        /* Modern GridView Styling */
-        .custom-grid {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background-color: #ffffff;
-        }
+    /* GridView Styling */
+    .custom-grid {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        margin: 0;
+    }
 
-        .custom-grid th {
-            background-color: #ffffff;
-            color: #64748b;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 16px 20px;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
+    .custom-grid th {
+        background-color: #2563eb !important;
+        color: #ffffff !important;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 14px 20px;
+        text-align: left;
+        border: none;
+    }
 
-        .custom-grid td {
-            padding: 16px 20px;
-            font-size: 14px;
-            color: #334155;
-            border-bottom: 1px solid #f1f5f9;
-            vertical-align: middle;
-        }
+    .custom-grid td {
+        padding: 14px 20px;
+        font-size: 14px;
+        color: #334155;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+    }
 
-        .custom-grid tr:last-child td {
-            border-bottom: none;
-        }
+    .custom-grid tr:last-child td {
+        border-bottom: none;
+    }
 
-        .custom-grid tr:hover td {
-            background-color: #f8fafc;
-        }
+    .custom-grid tr:hover td {
+        background-color: #f8fafc;
+    }
 
-        /* Specific Text Styles */
-        .id-badge {
-            font-weight: 600;
-            color: #64748b;
-        }
+    /* Text Styles */
+    .id-text {
+        font-weight: 700;
+        color: #64748b;
+    }
 
-        .name-text {
-            font-weight: 700;
-            color: #0f172a;
-        }
+    .name-text {
+        font-weight: 700;
+        color: #0f172a;
+    }
 
-        .email-text {
-            color: #64748b;
-        }
+    .email-text {
+        color: #64748b;
+    }
 
-        .msg-text {
-            color: #475569;
-        }
+    .msg-text {
+        color: #475569;
+    }
 
-        /* Delete Button Style */
-        .btn-delete {
-            color: #ef4444;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
+    /* Delete Button Style */
+    .btn-delete {
+        background-color: #ef4444;
+        color: white !important;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 13px;
+        text-decoration: none !important;
+        display: inline-block;
+        box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+        transition: all 0.2s ease;
+    }
 
-        .btn-delete:hover {
-            color: #dc2626;
-            text-decoration: underline;
-        }
-    </style>
+    .btn-delete:hover {
+        background-color: #dc2626;
+        color: white !important;
+    }
+</style>
 </head>
     
 <body>
@@ -176,6 +190,8 @@
                 </Columns>
             </asp:GridView>--%>
 
+            <asp:Button ID="Button1" runat="server" Text="View Report" OnClick="Button1_Click" />
+            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
     OnRowCommand="GridView1_RowCommand"
     CssClass="custom-grid" GridLines="None">

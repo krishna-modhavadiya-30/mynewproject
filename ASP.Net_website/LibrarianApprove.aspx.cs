@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
 
 namespace ASP.Net_website
 {
@@ -18,6 +21,10 @@ namespace ASP.Net_website
         DataSet ds;
 
         string s = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
+
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr
+          = new ReportDocument();
+        static string Crypath = "";
 
         void getcon()
         {
@@ -37,7 +44,7 @@ namespace ASP.Net_website
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             if (ViewState["gridLoaded"] == null)
             {
                 fillgrid();
@@ -56,17 +63,50 @@ namespace ASP.Net_website
             if (e.CommandName == "cmd_approve")
             {
                 getcon();
-               
+
                 cmd = new SqlCommand("update IssueReturn_tbl set Status='Approved' where IssueId='" + e.CommandArgument + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                
+
                 fillgrid();
             }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            getcon();
+
+           
+            da = new SqlDataAdapter("select * from IssueReturn_tbl where Status='Approved'", con);
+            ds = new DataSet();
+            da.Fill(ds, "IssueReturn_tbl"); 
+
+           
+            string s = Server.MapPath("~/IssuedBooksData.xml");
+            ds.WriteXmlSchema(s);
+
+            con.Close();
+
+           
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+
+            string path = Server.MapPath("~/lbrn_issue.rpt");
+            cr.Load(path);
+            cr.SetDataSource(ds.Tables[0]);
+            cr.Refresh();
+            CrystalReportViewer1.ReportSource = cr;
+            cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+            Response, true, "student_issue ");
+        }
+
+        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
         {
 
         }

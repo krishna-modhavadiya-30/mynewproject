@@ -14,6 +14,7 @@ namespace ASP.Net_website
     public partial class showcategorybooks : System.Web.UI.Page
     {
         SqlConnection con;
+        SqlCommand cmd;
         SqlDataAdapter da;
         DataSet ds;
         string nm;
@@ -27,25 +28,18 @@ namespace ASP.Net_website
                 con.Open();
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            filldatalis();
-
-            if (Session["admin"] != null)
+            if (!IsPostBack)
             {
-                getcon();
+                filldatalis();
+            }
 
-                da = new SqlDataAdapter("select * from [user] where Email='" + Session["admin"] + "'", con);
-                ds = new DataSet();
-                da.Fill(ds);
-
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    nm = ds.Tables[0].Rows[0]["Name"].ToString();
-                    
-                }
+        
+            if (Session["AdminLoggedIn"] != null && (bool)Session["AdminLoggedIn"] == true)
+            {
+                nm = Convert.ToString(Session["AdminUser"]);
             }
         }
 
@@ -60,13 +54,71 @@ namespace ASP.Net_website
                 da.Fill(ds);
                 DataList1.DataSource = ds;
                 DataList1.DataBind();
+                con.Close();
+
+                bool isAdmin = (Session["AdminLoggedIn"] != null && (bool)Session["AdminLoggedIn"] == true);
+
+                foreach (DataListItem item in DataList1.Items)
+                {
+                    if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                    {
+                        Panel pnlStock = (Panel)item.FindControl("pnlAdminStock");
+                        if (pnlStock != null)
+                        {
+                            pnlStock.Visible = isAdmin;
+                     }
+                    }
+                }
             }
+        
+
+        
+        
         }
 
-       
         protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "issue")
+            {
+                string bookId = e.CommandArgument.ToString();
+                string catId = Request.QueryString["catid"] != null ? Request.QueryString["catid"].ToString() : "";
+
+                Response.Redirect("IssueBook.aspx?bid=" + bookId + "&catid=" + catId);
+            }
+
+
+          
+            if (e.CommandName == "addstock")
+            {
+                if (Session["AdminLoggedIn"] != null)
+                {
+                    string bookId = e.CommandArgument.ToString();
+                    TextBox txtQty = (TextBox)e.Item.FindControl("txtAddStock");
+
+                    if (txtQty.Text != "")
+                    {
+                        int extraStock = Convert.ToInt32(txtQty.Text);
+
+                        getcon();
+                        string q = "update Add_Books_tbl set Book_Copies = Book_Copies + " + extraStock + " where Book_Id='" + bookId + "'";
+                        cmd = new SqlCommand(q, con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        filldatalis();
+                    }
+                }
+            }
+
+
+
+
+
+        }
+        }
     }
-}

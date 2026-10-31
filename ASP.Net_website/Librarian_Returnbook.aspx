@@ -1,69 +1,115 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Librarian_Returnbook.aspx.cs" Inherits="ASP.Net_website.css.Librarian_Returnbook"  EnableEventValidation="false" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/style.css" rel="stylesheet" />
-    <style>
+   <style>
         .grid-container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 30px auto;
             background: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Perfect Right Alignment Header Box */
+        .header-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
         }
 
         .grid-title {
             color: #1e293b;
-            margin-bottom: 15px;
-            font-size: 22px;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 8px;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
         }
 
+        /* View Report Button - Forced to Right Side */
+        .btn-report {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 9px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+            transition: all 0.2s ease;
+            margin-left: auto;
+        }
+
+        .btn-report:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* Styled GridView Table */
         .styled-grid {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
 
-            .styled-grid th {
-                background-color: #2563eb;
-                color: white;
-                padding: 10px;
-                text-align: left;
-                font-size: 14px;
-            }
+        .styled-grid th {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+        }
 
-            .styled-grid td {
-                padding: 10px;
-                border-bottom: 1px solid #e2e8f0;
-                color: #334155;
-                font-size: 14px;
-            }
+        .styled-grid td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            font-size: 14px;
+        }
 
-            .styled-grid tr:hover {
-                background-color: #f8fafc;
-            }
+        .styled-grid tr:hover {
+            background-color: #f8fafc;
+        }
 
+        /* Modern Red Delete Button */
         .btn-delete {
             background-color: #ef4444;
             color: white;
             border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 6px 14px;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+            transition: all 0.2s ease;
         }
 
-            .btn-delete:hover {
-                background-color: #dc2626;
-            }
+        .btn-delete:hover {
+            background-color: #dc2626;
+        }
 
         .alert-msg {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
+            color: #10b981;
+        }
+
+        .report-view-box {
+            margin-top: 25px;
+            overflow-x: auto;
         }
     </style>
 </asp:Content>
@@ -382,33 +428,17 @@
         </div>
     </section>
     </main>--%>
-    <%-- <div style="margin: 20px;">
-        <h2>Returned Books List</h2>
-
-        <asp:Label ID="lblMsg" runat="server" Font-Bold="true"></asp:Label>
-        <br />
-        <br />
-
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="IssueId" OnRowDeleting="GridView1_RowDeleting" CellPadding="5" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-            <Columns>
-                <asp:BoundField DataField="IssueId" HeaderText="Issue ID" />
-                <asp:BoundField DataField="StudentName" HeaderText="Student Name" />
-                <asp:BoundField DataField="BookName" HeaderText="Book Name" />
-                <asp:BoundField DataField="IssueDate" HeaderText="Issue Date" />
-                <asp:BoundField DataField="ReturnDate" HeaderText="Return Date" />
-                <asp:BoundField DataField="Status" HeaderText="Status" />
-
-                <asp:TemplateField HeaderText="Action">
-                    <ItemTemplate>
-                        <asp:Button ID="btnDelete" runat="server" CommandName="Delete" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
-    </div>--%>
+   
     <!-- Form Section -->
     <div class="grid-container">
-        <h2 class="grid-title">Returned Books List</h2>
+        
+        <!-- Proper Header Alignment Box -->
+        <div class="header-box">
+            <h2 class="grid-title">Returned Books List</h2>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View Report" CssClass="btn-report" />
+            <br />
+            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
+        </div>
 
         <asp:Label ID="lblMsg" runat="server" CssClass="alert-msg"></asp:Label>
 

@@ -18,7 +18,6 @@
             color: #2b3674;
         }
 
-        /* Top Header Container */
         .page-header {
             text-align: center;
             margin-bottom: 25px;
@@ -40,7 +39,6 @@
             margin: 0;
         }
 
-        /* Container for DataList Grid */
         .datalist-wrapper {
             display: flex;
             justify-content: center;
@@ -48,7 +46,6 @@
             margin: 0 auto;
         }
 
-            /* Spacing between cards increased (32px gap) */
             .datalist-wrapper table {
                 border-collapse: separate;
                 border-spacing: 32px 20px;
@@ -61,12 +58,11 @@
                 vertical-align: top;
             }
 
-        /* Compact Book Card Item Design */
         .book-card {
             background: #ffffff;
             border-radius: 16px;
             padding: 14px;
-            width: 195px; /* Compact width */
+            width: 195px; 
             text-align: left;
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -79,10 +75,9 @@
                 box-shadow: 0px 12px 28px rgba(67, 24, 255, 0.15);
             }
 
-        /* Reduced Image Height Container */
         .img-container {
             width: 100%;
-            height: 160px; /* Specific compact height */
+            height: 160px; 
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 10px;
@@ -103,7 +98,6 @@
             transform: scale(1.05);
         }
 
-        /* Book Info Details */
         .book-title {
             font-size: 14px;
             font-weight: 700;
@@ -129,7 +123,6 @@
             margin-bottom: 10px;
         }
 
-        /* Button Action Links */
         .card-actions {
             margin-top: auto;
             display: flex;
@@ -174,21 +167,50 @@
             .btn-issue:hover {
                 background-color: #2563eb;
             }
+
+        .stock-box {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .txt-qty {
+            width: 55px;
+            padding: 4px;
+            font-size: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .btn-add-stock {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn-add-stock:hover {
+            background-color: #059669;
+        }
     </style>
 </head>
 <body>
 
     <form id="form1" runat="server">
 
-        <!-- Header Section -->
         <div class="page-header">
             <div class="page-subtitle">Library Administration</div>
             <h1 class="page-title">Category Wise Books</h1>
         </div>
 
-        <!-- DataList Section -->
         <div class="datalist-wrapper">
-            <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="5" OnSelectedIndexChanged="DataList1_SelectedIndexChanged" CellSpacing="20">
+            <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="5" OnSelectedIndexChanged="DataList1_SelectedIndexChanged" CellSpacing="20" OnItemCommand="DataList1_ItemCommand">
                 <ItemTemplate>
                     <div class="book-card">
                         <div class="img-container">
@@ -202,6 +224,11 @@
                             <asp:Label ID="lblAuth" runat="server" Text='<%# Eval("Book_Author") %>' Font-Bold="True"></asp:Label>
                         </div>
 
+                        <div class="book-info">
+                            Stock:
+                            <asp:Label ID="lblCopies" runat="server" Text='<%# Eval("Book_Copies") %>' Font-Bold="True" ForeColor="#10B981"></asp:Label>
+                        </div>
+
                         <div class="book-price">
                             Price: ₹<asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Book_Price") %>'></asp:Label>
                         </div>
@@ -209,6 +236,12 @@
                         <div class="card-actions">
                             <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn-view" PostBackUrl='<%# "viewdetails.aspx?bid=" + Eval("Book_Id") %>'>View Detail</asp:LinkButton>
                             <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn-issue" PostBackUrl='<%# "issuebook.aspx?bid=" + Eval("Book_Id") %>'>Issue Book</asp:LinkButton>
+                            
+                         
+                            <asp:Panel ID="pnlAdminStock" runat="server" CssClass="stock-box" Visible="false">
+                                <asp:TextBox ID="txtAddStock" runat="server" CssClass="txt-qty" TextMode="Number" Placeholder="Qty"></asp:TextBox>
+                                <asp:Button ID="btnAddStock" runat="server" CssClass="btn-add-stock" Text="+ Stock" CommandName="addstock" CommandArgument='<%# Eval("Book_Id") %>' />
+                            </asp:Panel>
                         </div>
                     </div>
                 </ItemTemplate>

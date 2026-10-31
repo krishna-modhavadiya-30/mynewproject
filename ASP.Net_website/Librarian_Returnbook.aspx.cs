@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
 
 namespace ASP.Net_website.css
 {
@@ -18,7 +21,9 @@ namespace ASP.Net_website.css
         DataSet ds;
 
         string s = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
-
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr
+        = new ReportDocument();
+        static string Crypath = "";
         void getcon()
         {
             con = new SqlConnection(s);
@@ -38,6 +43,7 @@ namespace ASP.Net_website.css
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            
             if (ViewState["gridLoaded"] == null)
             {
                 fillgrid();
@@ -55,18 +61,48 @@ namespace ASP.Net_website.css
             int issueId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
 
             getcon();
+            
             cmd = new SqlCommand("delete from IssueReturn_tbl where IssueId=" + issueId, con);
             cmd.ExecuteNonQuery();
             con.Close();
 
-            fillgrid();
-
+            
+            ViewState["gridLoaded"] = null;
             Response.Redirect("Librarian_Returnbook.aspx?deleted=true");
         }
 
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+          
+            getcon();
+            da = new SqlDataAdapter("select * from IssueReturn_tbl where Status='Returned'", con);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            
+            string s = Server.MapPath("~/ReturnedBooksData.xml");
+            ds.WriteXmlSchema(s);
+            con.Close();
+
+            
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+
+          
+            ReportDocument cr = new ReportDocument();
+            string path = Server.MapPath("~/lbrn_return.rpt");
+            cr.Load(path);
+            cr.SetDataSource(ds.Tables[0]);
+            cr.Refresh();
+
+           
+            CrystalReportViewer1.ReportSource = cr;
+            cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Returned_Books_Report");
         }
     }
 }

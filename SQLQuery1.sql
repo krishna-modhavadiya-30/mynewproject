@@ -1,0 +1,1 @@
+﻿ALTER TABLE Add_Books_tbl ADD Book_Copies INT DEFAULT 10 WITH VALUES;

@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Librarian_active_student.aspx.cs" Inherits="ASP.Net_website.Librarian_active_student" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
    
@@ -11,63 +13,155 @@
  
     <link href="css/style.css" rel="stylesheet" />
     
-    <style>
-        
-        .custom-grid {
-        width: 100% !important;
-        border-collapse: collapse !important;
-        background-color: #ffffff;
-        font-size: 0.82rem !important; 
-    }
+   <style>
+     /* Modern Container Styling */
+     .grid-container {
+         max-width: 1100px;
+         margin: 30px auto;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     }
 
-    
-    .custom-grid th {
-        background-color: #f8f9fa !important;
-        color: #495057 !important;
-        font-weight: 600;
-        padding: 6px 10px !important; 
-        border-bottom: 2px solid #dee2e6 !important;
-        text-transform: uppercase;
-        font-size: 0.75rem !important;
-        letter-spacing: 0.5px;
-    }
+     /* Clean Header Card - Perfect Right Alignment */
+     .header-card {
+         background: #ffffff;
+         border-radius: 16px;
+         padding: 24px 30px;
+         box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+         margin-bottom: 25px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         flex-wrap: wrap;
+         gap: 15px;
+     }
 
-    .custom-grid td {
-        padding: 5px 10px !important; 
-        vertical-align: middle !important;
-        border-bottom: 1px solid #e9ecef !important;
-        color: #333333;
-    }
+     .header-title {
+         color: #1e293b;
+         font-size: 24px;
+         font-weight: 800;
+         margin: 0;
+     }
 
-    
-    .custom-grid tr:hover {
-        background-color: #f8f9fa !important;
-    }
+     .header-subtitle {
+         color: #64748b;
+         font-size: 14px;
+         margin-top: 4px;
+     }
 
-   
-    .student-img {
-        width: 38px !important; 
-        height: 38px !important; 
-        object-fit: cover;
-        border-radius: 4px; 
-        border: 1px solid #d1d5db;
-        display: block;
-    }
+     /* Action Buttons Wrapper - Pushed both buttons together to the Right */
+     .action-buttons {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         margin-left: auto; /* બટન્સને એકદમ જમણી બાજુ શિફ્ટ કરશે */
+     }
 
- 
-    .btn-delete {
-        color: #dc3545 !important;
-        text-decoration: none !important;
-        font-weight: 500;
-        font-size: 0.8rem !important;
-        padding: 2px 6px;
-    }
+     /* Back Button Styling */
+     .btn-back {
+         border: 1.5px solid #2563eb;
+         color: #2563eb !important;
+         font-weight: 600;
+         padding: 8px 18px;
+         border-radius: 8px;
+         text-decoration: none !important;
+         transition: all 0.2s ease;
+         font-size: 14px;
+         display: inline-block;
+     }
 
-    .btn-delete:hover {
-        color: #a71d2a !important;
-        text-decoration: underline !important;
-    }
-    </style>
+     .btn-back:hover {
+         background-color: #f0f6ff;
+         color: #1d4ed8 !important;
+     }
+
+     /* View Report Button - Matching Royal Blue Theme */
+     .btn-report {
+         background-color: #2563eb;
+         color: #ffffff;
+         border: none;
+         padding: 9px 22px;
+         font-size: 14px;
+         font-weight: 700;
+         border-radius: 8px;
+         cursor: pointer;
+         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+         transition: all 0.2s ease;
+     }
+
+     .btn-report:hover {
+         background-color: #1d4ed8;
+         transform: translateY(-1px);
+     }
+
+     /* Custom GridView Table */
+     .table-card {
+         background: #ffffff;
+         border-radius: 16px;
+         box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+         overflow: hidden;
+         border: 1px solid #e2e8f0;
+     }
+
+     .custom-grid {
+         width: 100% !important;
+         border-collapse: collapse !important;
+         margin: 0 !important;
+     }
+
+     .custom-grid th {
+         background-color: #2563eb !important;
+         color: #ffffff !important;
+         font-weight: 700;
+         padding: 14px 16px !important;
+         border: none !important;
+         font-size: 13px !important;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+     }
+
+     .custom-grid td {
+         padding: 12px 16px !important;
+         vertical-align: middle !important;
+         border-bottom: 1px solid #f1f5f9 !important;
+         color: #334155;
+         font-size: 14px;
+     }
+
+     .custom-grid tr:hover {
+         background-color: #f8fafc !important;
+     }
+
+     /* Photo Column Avatar Styling - Small Square Box */
+     .student-img {
+         width: 38px !important;
+         height: 38px !important;
+         object-fit: cover;
+         border-radius: 6px; /* ગોળને બદલે નાનું ચોરસ બોક્સ રાખ્યું છે */
+         border: 1px solid #d1d5db;
+         display: block;
+     }
+
+     /* Delete Link Button Styling */
+     .btn-delete {
+         background-color: #ef4444;
+         color: white !important;
+         border: none;
+         padding: 6px 14px;
+         border-radius: 6px;
+         cursor: pointer;
+         font-weight: 700;
+         font-size: 13px;
+         text-decoration: none !important;
+         display: inline-block;
+         box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+         transition: all 0.2s ease;
+     }
+
+     .btn-delete:hover {
+         background-color: #dc2626;
+         color: white !important;
+     }
+</style>
 
 
 </asp:Content>
@@ -390,19 +484,25 @@
     <div class="container py-4">
 
         <!-- Header Card -->
-        <div class="card shadow-sm border-0 rounded-4 mb-4 p-4">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                <div>
-                    <h2 class="fw-bold text-dark mb-1">Registered Student Records 👥</h2>
-                    <p class="text-muted mb-0">List of all registered students in the library system.</p>
-                </div>
-                <asp:HyperLink ID="btnBack" runat="server" NavigateUrl="~/Librarian_deshboard.aspx" CssClass="btn btn-outline-primary rounded-3 px-3">
-                    <i class="fa-solid fa-arrow-left me-1"></i> Back to Dashboard
-                </asp:HyperLink>
-            </div>
-        </div>
+       <div class="header-card">
+    <div>
+        <h2 class="header-title">Registered Student Records 👥</h2>
+        <p class="header-subtitle mb-0">List of all registered students in the library system.</p>
+    </div>
+    
+  
+    <div class="action-buttons">
+        <asp:HyperLink ID="btnBack" runat="server" NavigateUrl="~/Librarian_deshboard.aspx" CssClass="btn-back">
+            <i class="fa-solid fa-arrow-left me-1"></i> Back to Dashboard
+        </asp:HyperLink>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View Report" CssClass="btn-report" />
+        <br />
+        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
+        <br />
+    </div>
+</div>
 
-        <!-- Filter & Search Card -->
+      <%--  <!-- Filter & Search Card -->
         <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
             <div class="row g-3">
                 <div class="col-md-8">
@@ -423,7 +523,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
         <%-- <!-- Dynamic Table (Structure Ready for Database Rows) -->
         <div class="card shadow-sm border-0 rounded-4 overflow-hidden">

@@ -8,7 +8,9 @@ using System.Reflection.Emit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
 namespace ASP.Net_website
 {
     public partial class Librarian_active_student : System.Web.UI.Page
@@ -21,6 +23,9 @@ namespace ASP.Net_website
 
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
 
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr
+         = new ReportDocument();
+        static string Crypath = "";
         void getcon()
         {
             con = new SqlConnection(s);
@@ -63,5 +68,33 @@ namespace ASP.Net_website
                 gridfill();
             }
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+           
+        
+           
+            getcon();
+            da = new SqlDataAdapter("select * from [user]", con);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            string xmlPath = Server.MapPath("~/UserData.xml");
+            ds.WriteXmlSchema(xmlPath);
+            con.Close();
+
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+
+            ReportDocument cr = new ReportDocument();
+            string path = Server.MapPath("~/active_std.rpt");
+            cr.Load(path);
+            cr.SetDataSource(ds.Tables[0]);
+            cr.Refresh();
+
+           
+            cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat, Response, true, "Active_Students_Report");
+        
+    }
     }
 }

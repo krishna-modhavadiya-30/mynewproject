@@ -19,7 +19,7 @@ namespace ASP.Net_website
 
         SqlCommand cmd;
         SqlDataReader dr;
-        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+        string s = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
 
         void getcon()
         {
@@ -35,23 +35,30 @@ namespace ASP.Net_website
         protected void btnLogin_Click(object sender, EventArgs e)
         {
 
-          
-            getcon();
 
            
-            cmd = new SqlCommand("select * from [user] where Email='" + txtEmail.Text + "' and Password='" + txtPassword.Text + "'", con);
-            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+            getcon();
+
+
+            Session.Remove("AdminLoggedIn");
+            Session.Remove("AdminUser");
+
+           
+            cmd = new SqlCommand("SELECT * FROM [user] WHERE Email='" + txtEmail.Text.Trim() + "' AND Password='" + txtPassword.Text.Trim() + "'", con);
+            dr = cmd.ExecuteReader();
 
             if (dr.Read())
             {
                
                 Session["Username"] = dr["Name"].ToString();
                 Session["Email"] = dr["Email"].ToString();
-                Session["UserID"] = dr["Id"].ToString();
 
                 con.Close();
 
-              
+               
                 Response.Redirect("Home.aspx");
             }
             else
@@ -60,5 +67,6 @@ namespace ASP.Net_website
                
             }
         }
+        
     }
 }
